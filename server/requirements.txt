@@ -17,6 +17,7 @@ filelock==3.4.0
 httpie==3.0.2
 idna==3.3
 multidict==6.0.2
+pillow==10.2.0
 platformdirs==2.4.0
 psycopg2-binary==2.9.3
 pycodestyle==2.8.0
