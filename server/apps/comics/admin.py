@@ -1,6 +1,6 @@
 from django.contrib import admin
 
-from comics.models import ComicMaster
+from comics.models import ComicMaster, ComicVersion
 
 class ComicMasterAdminConfig(admin.ModelAdmin):
   
@@ -19,5 +19,24 @@ class ComicMasterAdminConfig(admin.ModelAdmin):
          ),
     )
 
-# Register your models here.
+
+class ComicVersionAdminConfig(admin.ModelAdmin):
+  
+    model = ComicVersion
+    search_fields = ('title', 'version_number',)
+    list_filter = ('title', 'version_number',)
+    ordering = ('title',)
+    list_display = ('title', 'version_number',)
+    fieldsets = (
+        (None, {'fields': ('title', 'version_number', 'cover',)}),
+    )
+    add_fieldsets = (
+        (None, {
+            'classes': ('wide',),
+            'fields': ('title', 'version_number', 'cover',)}
+         ),
+    )
+
+
 admin.site.register(ComicMaster, ComicMasterAdminConfig)
+admin.site.register(ComicVersion, ComicVersionAdminConfig)

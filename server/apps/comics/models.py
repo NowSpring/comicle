@@ -1,5 +1,7 @@
+import uuid
 from django.db import models
 from django.core.validators import FileExtensionValidator
+from django.core.validators import MinValueValidator, MaxValueValidator
 
 # Create your models here.
 class ComicMaster(models.Model):
@@ -50,13 +52,14 @@ class ComicMaster(models.Model):
         ("history", "時代劇"),
     )
     
+    id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
     title = models.CharField(verbose_name = "タイトル", max_length = 100)
     author = models.CharField(verbose_name = "作者", max_length = 100)
     era = models.CharField(verbose_name = "年代", max_length = 100, choices = ERA_TYPES)
     publisher = models.CharField(verbose_name = "出版社", max_length = 100, choices = PUBLISHER_TYPES)
     target = models.CharField(verbose_name = "対象", max_length = 100, choices = TARGET_TYPES)
     genre = models.CharField(verbose_name = "ジャンル", max_length = 100, choices = GENRE_TYPES)
-    cover = models.ImageField(upload_to = "cover/", null = False, blank = True)
+    cover = models.ImageField(upload_to = "cover/master/", null = False, blank = True)
     # pdf = models.FileField(upload_to = "pdf/", validators = [FileExtensionValidator(['pdf'])])
     
     class Meta:
@@ -66,3 +69,19 @@ class ComicMaster(models.Model):
     def __str__(self):
         
         return self.title
+      
+
+class ComicVersion(models.Model):
+  
+  title = models.ForeignKey(ComicMaster, on_delete = models.CASCADE)
+  id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
+  version_number = models.IntegerField(verbose_name = "巻数", validators=[MinValueValidator(0)])
+  cover = models.ImageField(upload_to = "cover/version/", null = False, blank = True)
+  
+  class Meta:
+      
+        verbose_name_plural = 'バージョン'
+    
+  def __str__(self):
+        
+        return str(self.version_number)
