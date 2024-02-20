@@ -84,4 +84,20 @@ class ComicVersion(models.Model):
     
   def __str__(self):
         
-        return str(self.version_number)
+        return  '{}_{}'.format(self.title, str(self.version_number))
+      
+
+class ComicEpisode(models.Model):
+  
+  title_version = models.ForeignKey(ComicVersion, on_delete = models.CASCADE)
+  id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
+  episode_number = models.IntegerField(verbose_name = "エピソード数", validators=[MinValueValidator(0)])
+  cover = models.ImageField(upload_to = "cover/episode/", null = False, blank = True)
+  
+  class Meta:
+      
+        verbose_name_plural = 'エピソード'
+    
+  def __str__(self):
+        
+        return '{}_{}'.format(self.title_version, str(self.episode_number))
