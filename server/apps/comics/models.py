@@ -60,7 +60,6 @@ class ComicMaster(models.Model):
     target = models.CharField(verbose_name = "対象", max_length = 100, choices = TARGET_TYPES)
     genre = models.CharField(verbose_name = "ジャンル", max_length = 100, choices = GENRE_TYPES)
     cover = models.ImageField(upload_to = "cover/master/", null = False, blank = True)
-    # pdf = models.FileField(upload_to = "pdf/", validators = [FileExtensionValidator(['pdf'])])
     
     class Meta:
       
@@ -93,6 +92,7 @@ class ComicEpisode(models.Model):
   id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
   episode_number = models.IntegerField(verbose_name = "エピソード数", validators=[MinValueValidator(0)])
   cover = models.ImageField(upload_to = "cover/episode/", null = False, blank = True)
+  pdf = models.FileField(upload_to = "pdf/episode/", validators = [FileExtensionValidator(['pdf'])])
   
   class Meta:
       
