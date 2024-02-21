@@ -46,12 +46,12 @@ class ComicEpisodeAdminConfig(admin.ModelAdmin):
     ordering = ('title_version', 'episode_number',)
     list_display = ('title_version', 'episode_number',)
     fieldsets = (
-        (None, {'fields': ('title_version', 'episode_number', 'cover',)}),
+        (None, {'fields': ('title_version', 'episode_number', 'cover', 'pdf',)}),
     )
     add_fieldsets = (
         (None, {
             'classes': ('wide',),
-            'fields': ('title_version', 'episode_number', 'cover',)}
+            'fields': ('title_version', 'episode_number', 'cover', 'pdf',)}
          ),
     )
 

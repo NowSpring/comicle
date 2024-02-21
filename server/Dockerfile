@@ -11,7 +11,7 @@ ENV PYTHONUNBUFFERED 1
 RUN apt-get update \
     && apt-get clean \
     && apt install -y git \
-    && apt install sqlite3 libsqlite3-dev
+    && apt install -y sqlite3 libsqlite3-dev
 
 # install dependencies
 RUN pip install --upgrade pip

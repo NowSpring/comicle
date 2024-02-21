@@ -43,9 +43,9 @@ def create_reviews_for_comic(sender, instance, created, **kwargs):
     if created:
       
         members = Member.objects.all()
-        review_model = COMIC_REVIEW_MAPPING.get(sender)
+        mapping = COMIC_REVIEW_MAPPING.get(sender)
 
-        if not review_model:
+        if not mapping:
           
             return
         
@@ -54,4 +54,4 @@ def create_reviews_for_comic(sender, instance, created, **kwargs):
           
         for member in members:
           
-            review_model.objects.create(members=member, **{field_name: instance})
+            review_model.objects.create(member=member, **{field_name: instance})
