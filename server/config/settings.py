@@ -42,6 +42,7 @@ INSTALLED_APPS = [
     'rest_framework',
     'rest_framework.authtoken',
     'corsheaders',
+    'dbbackup',
     # Installed app
     'members',
     'comics',
@@ -162,3 +163,8 @@ REST_FRAMEWORK = {
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 
 MEDIA_URL = '/media/'
+
+
+DBBACKUP_STORAGE = 'django.core.files.storage.FileSystemStorage'
+
+DBBACKUP_STORAGE_OPTIONS = {'location': BASE_DIR/'dump'}
