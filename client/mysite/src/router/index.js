@@ -1,18 +1,18 @@
 import { createRouter, createWebHistory, createWebHashHistory } from "vue-router";
-import HomeView from "../views/HomeView.vue";
-import LoginView from "../views/LoginView.vue";
+import Login from "../views/Login.vue";
+import ComicMaster from "../views/ComicMaster.vue";
 
 const routes = [
   {
-    path: "/",
-    name: "home",
-    component: HomeView,
-    meta: { requiresAuth: true },
-  },
-  {
     path: "/login",
     name: "login",
-    component: LoginView,
+    component: Login,
+  },
+  {
+    path: "/comicmaster",
+    name: "comicmaster",
+    component: ComicMaster,
+    meta: { requiresAuth: true },
   },
 ];
 
