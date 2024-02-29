@@ -1,7 +1,13 @@
 <template>
   <TopBar></TopBar>
   <v-container>
-    <ComicMasterTable :data="comic_masters" :headers="headers"></ComicMasterTable>
+    <ComicTable :data="comic_masters" :headers="headers">
+      <template #[`item.title`]="{ item }">
+        <router-link :to="{ name: 'comicversion', params: { id: item.id, title: item.title }}">
+          {{ item.title }}
+        </router-link>
+      </template>
+    </ComicTable>
   </v-container>
 </template>
 
@@ -10,7 +16,7 @@
 import { ref, onMounted } from 'vue';
 import EventService from "@/plugins/EventService.js";
 import TopBar from '@/components/TopBar.vue';
-import ComicMasterTable from "@/components/ComicMasterTable.vue";
+import ComicTable from "@/components/ComicTable.vue";
 
 const comic_masters = ref(null);
 

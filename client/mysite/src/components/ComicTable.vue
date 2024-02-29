@@ -8,7 +8,7 @@
     class="elevation-1 my-3 mx-auto"
     style="width:1000px;"
   >
-    <template v-slot:item.cover="{ item }" >
+    <template #[`item.cover`]="{ item }" >
       <v-img 
         :src="item.cover" 
         :aspect-ratio="16/9" 
@@ -18,18 +18,20 @@
         min-width="160px" 
         class="ma-0 pa-0"
       ></v-img>
-    </template>
+    </template>    
+
   </v-data-table>
 </template>
 
 <script setup>
-import { defineProps } from 'vue';
+import { defineProps, toRefs } from 'vue';
 
-// propsを定義する
-const { data, headers } = defineProps({
+const props = defineProps({
   data: Array,
   headers: Array,
 });
+
+const { data, headers } = toRefs(props);
 </script>
 
 
