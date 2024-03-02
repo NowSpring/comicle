@@ -2,11 +2,6 @@
   <TopBar></TopBar>
   <v-container>
     <ComicTable :data="comic_masters" :headers="headers">
-      <template #[`item.title`]="{ item }">
-        <router-link :to="{ name: 'comicversion', params: { id: item.id, title: item.title }}">
-          {{ item.title }}
-        </router-link>
-      </template>
     </ComicTable>
   </v-container>
 </template>
@@ -22,42 +17,49 @@ const comic_masters = ref(null);
 
 const headers = ref([
   {
-    text: 'サムネイル予定',
+    title: '',
     align: 'start',
     sortable: false,
     value: 'cover',
     width: 100,
   },
   {
-    text: "タイトル",
+    title: "タイトル",
     value: "title",
+    sortable: true,
     width: 100,
   },
   {
-    text: "作者",
+    title: "作者",
     value: "author",
+    sortable: true,
     width: 100,
   },
   {
-    text: "年代",
+    title: "年代",
     value: "era",
+    sortable: true,
     width: 100,
   },
   {
-    text: "出版社",
+    title: "出版社",
     value: "publisher",
+    sortable: true,
     width: 100,
   },
   {
-    text: "対象",
+    title: "対象",
     value: "target",
+    sortable: true,
     width: 100,
   },
   {
-    text: "ジャンル",
+    title: "ジャンル",
     value: "genre",
+    sortable: true,
     width: 100,
   },
+
 ]);
 
 const getComicMaster = async () => {
