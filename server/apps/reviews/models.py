@@ -12,7 +12,6 @@ class ReviewMaster(models.Model):
     comic_master = models.ForeignKey(ComicMaster, on_delete=models.CASCADE, related_name='review_master')
 
     id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
-    isfavorite = models.BooleanField(default=False)
     score_1 = models.IntegerField(null=True, blank=True, validators=[MinValueValidator(0), MaxValueValidator(5)])
     score_2 = models.IntegerField(null=True, blank=True, validators=[MinValueValidator(0), MaxValueValidator(5)])
     score_3 = models.IntegerField(null=True, blank=True, validators=[MinValueValidator(0), MaxValueValidator(5)])
@@ -36,7 +35,6 @@ class ReviewVersion(models.Model):
     comic_version = models.ForeignKey(ComicVersion, on_delete=models.CASCADE, related_name='reviews_version')
 
     id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
-    isfavorite = models.BooleanField(default=False)
     score_1 = models.IntegerField(null=True, blank=True, validators=[MinValueValidator(0), MaxValueValidator(5)])
     score_2 = models.IntegerField(null=True, blank=True, validators=[MinValueValidator(0), MaxValueValidator(5)])
     score_3 = models.IntegerField(null=True, blank=True, validators=[MinValueValidator(0), MaxValueValidator(5)])
@@ -59,7 +57,6 @@ class ReviewEpisode(models.Model):
     comic_episode = models.ForeignKey(ComicEpisode, on_delete=models.CASCADE, related_name='review_episode')
 
     id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
-    isfavorite = models.BooleanField(default=False)
     score_1 = models.IntegerField(null=True, blank=True, validators=[MinValueValidator(0), MaxValueValidator(5)])
     score_2 = models.IntegerField(null=True, blank=True, validators=[MinValueValidator(0), MaxValueValidator(5)])
     score_3 = models.IntegerField(null=True, blank=True, validators=[MinValueValidator(0), MaxValueValidator(5)])
