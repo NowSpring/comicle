@@ -76,7 +76,11 @@ const props = defineProps({
 const { datas, headers, linkname } = toRefs(props);
 
 const clickRow = (item) => {
-  router.push({ name: linkname.value, params: { id: item.id }});
+  if (linkname.value !== "pdf") {
+    router.push({ name: linkname.value, params: { id: item.id }});
+  } else {
+    window.open(item.pdf, '_blank')
+  }
 };
 
 onMounted(() => {

@@ -40,8 +40,8 @@ export default {
   getComicVersion(title_id) {
     return apiClient.get(`comic/version?title_id=${ title_id }`);
   },
-  getComicEpisode() {
-    return apiClient.get("comic/episode");
+  getComicEpisode(title_version_id) {
+    return apiClient.get(`comic/episode?title_version_id=${ title_version_id }`);
   },
   // getReviewMaster() {
   //   return apiClient.get("review/master");
