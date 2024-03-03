@@ -1,17 +1,22 @@
 <template>
-  <TopBar></TopBar>
-  <v-container>
-    <ComicTable :data="comic_masters" :headers="headers">
+  <TopBar v-if="isParentRoute"></TopBar>
+  <v-container  v-if="isParentRoute">
+    <ComicTable :datas="comic_masters" :headers="headers" :linkname="linkname">
     </ComicTable>
   </v-container>
+  <router-view></router-view>
 </template>
 
 
 <script setup>
-import { ref, onMounted } from 'vue';
+import { useRoute } from 'vue-router';
+import { ref, computed, onMounted } from 'vue';
 import EventService from "@/plugins/EventService.js";
 import TopBar from '@/components/TopBar.vue';
 import ComicTable from "@/components/ComicTable.vue";
+
+const route = useRoute();
+const isParentRoute = computed(() => route.name === 'comicmaster');
 
 const comic_masters = ref(null);
 
@@ -59,8 +64,9 @@ const headers = ref([
     sortable: true,
     width: 100,
   },
-
 ]);
+
+const linkname =  'comicversion';
 
 const getComicMaster = async () => {
   try {

@@ -1,8 +1,9 @@
 import { createRouter, createWebHistory, createWebHashHistory } from "vue-router";
 import Login from "../views/Login.vue";
-import Test from "../views/Test.vue";
 import ComicMaster from "../views/ComicMaster.vue";
 import ComicVersion from "../views/ComicVersion.vue";
+import ComicEpisode from "../views/ComicEpisode.vue";
+import Test from "../views/Test.vue";
 
 
 const routes = [
@@ -18,11 +19,20 @@ const routes = [
     meta: { requiresAuth: true },
     children: [
       {
-        path: "comicversion/:id", 
+        path: ":id/comicversion", 
         name: "comicversion",
         component: ComicVersion,
         props: true, 
         meta: { requiresAuth: true },
+        children: [
+          {
+            path: ":id/comicepisode", 
+            name: "comicepisode",
+            component: ComicEpisode,
+            props: true, 
+            meta: { requiresAuth: true },
+          }
+        ]
       }
     ]
   },
