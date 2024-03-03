@@ -37,8 +37,8 @@ export default {
   getComicMaster() {
     return apiClient.get("comic/master");
   },
-  getComicVersion() {
-    return apiClient.get("comic/version");
+  getComicVersion(title_id) {
+    return apiClient.get(`comic/version?title_id=${ title_id }`);
   },
   getComicEpisode() {
     return apiClient.get("comic/episode");

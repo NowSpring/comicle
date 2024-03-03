@@ -1,7 +1,9 @@
 from rest_framework import viewsets
+from django_filters.rest_framework import DjangoFilterBackend
 
 from comics.models import ComicMaster, ComicVersion, ComicEpisode
 from comics.serializers import ComicMasterSerializer, ComicVersionSerializer, ComicEpisodeSerializer
+from comics.filters import ComicVersionFilter
 
 class ComicMasterViewSet(viewsets.ModelViewSet):
   
@@ -13,7 +15,8 @@ class ComicVersionViewSet(viewsets.ModelViewSet):
   
     queryset = ComicVersion.objects.all()
     serializer_class = ComicVersionSerializer
-    
+    filter_backends = [DjangoFilterBackend]
+    filterset_class = ComicVersionFilter
     
 class ComicEpisodeViewSet(viewsets.ModelViewSet):
   

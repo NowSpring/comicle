@@ -17,8 +17,8 @@ import ComicTable from "@/components/ComicTable.vue";
 
 const route = useRoute();
 const isParentRoute = computed(() => route.name === 'comicversion');
+const title_id = computed(() => route.params.id);
 
-// const title_id = computed(() => route.params.id);
 const comic_versions = ref(null);
 
 const headers = ref([
@@ -41,7 +41,7 @@ const linkname =  'comicepisode';
 
 const getComicVersion = async () => {
   try {
-    const response = await EventService.getComicVersion();
+    const response = await EventService.getComicVersion(title_id.value);
     comic_versions.value = response.data;
   } catch (error) {
     console.log("Error_home" + error);

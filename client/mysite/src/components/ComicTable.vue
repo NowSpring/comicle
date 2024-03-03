@@ -80,6 +80,7 @@ const clickRow = (item) => {
 };
 
 onMounted(() => {
+  // console.log(datas.value)
   // console.log(headers.value); // headersの中身をコンソールに出力
 });
 </script>
