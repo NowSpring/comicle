@@ -53,6 +53,11 @@
           <span v-if="header.value === 'episode_number'">
             {{ item.episode_number }}
           </span>
+          <spna v-if="header.value === 'review'">
+            <v-btn icon>
+              <v-icon x-large>mdi-pencil</v-icon>
+            </v-btn>
+          </spna>
         </td>
       </tr>
     </template>

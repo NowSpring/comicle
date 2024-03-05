@@ -35,6 +35,11 @@ const headers = ref([
     sortable: true,
     width: 100,
   },
+  {
+    title: "",
+    value: "review",
+    width: 100,
+  },
 ]);
 
 const linkname =  'pdf';
